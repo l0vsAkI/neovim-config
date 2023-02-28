@@ -1,0 +1,12 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "html",
+    "css",
+    "lua",
+    "json",
+    "javascript",
+    "typescript",
+    "vue"
+  ],
+  "Lua.completion.workspaceWord": false
+}
