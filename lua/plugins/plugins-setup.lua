@@ -21,10 +21,6 @@ vim.cmd([[
   augroup end
 ]])
 
-
-
-
-
 -- 插件列表
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'

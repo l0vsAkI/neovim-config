@@ -6,7 +6,9 @@
     "json",
     "javascript",
     "typescript",
-    "vue"
+    "vue",
+    "jsx",
+    "tsx"
   ],
   "Lua.completion.workspaceWord": false
 }

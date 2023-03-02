@@ -13,5 +13,6 @@ require('im_select').setup {
 	-- e.g. 'im-select' or '/usr/local/bin/im-select'
 	-- For Windows/WSL, default: "im-select.exe"
 	-- For macOS, default: "im-select"
-	default_command = 'C:\\im-select\\im-select.exe'
+	-- default_command = 'C:\\im-select\\im-select.exe'
+	default_command = 'im-select.exe'
 }
