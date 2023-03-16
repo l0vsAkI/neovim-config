@@ -12,5 +12,8 @@
     "javascriptreact",
     "typescriptreact"
   ],
+  "eslint": {
+    "enable": true
+  },
   "Lua.completion.workspaceWord": false
 }

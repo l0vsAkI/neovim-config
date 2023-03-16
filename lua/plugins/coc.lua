@@ -172,6 +172,8 @@ local opts = {silent = true, nowait = true}
 keyset("n", "<space>a", ":<C-u>CocList diagnostics<cr>", opts)
 -- Manage extensions
 keyset("n", "<space>e", ":<C-u>CocList extensions<cr>", opts)
+-- Overview extensions
+keyset("n", "<space>m", ":<C-u>CocList marketplace<cr>", opts)
 -- Show commands
 keyset("n", "<space>c", ":<C-u>CocList commands<cr>", opts)
 -- Find symbol of current document
