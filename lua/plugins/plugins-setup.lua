@@ -1,8 +1,8 @@
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
     vim.cmd [[packadd packer.nvim]]
     return true
   end
@@ -25,56 +25,55 @@ vim.cmd([[
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
-  use({ -- 主题
-    'projekt0n/github-nvim-theme', tag = 'v0.0.7',
-  -- or                            branch = '0.0.x'
-    config = function()
-      require('github-theme').setup({
-        theme_style = "dark_default",
-      })
-    end
-  })
+  use {'nyoom-engineering/oxocarbon.nvim'}
+  use({ 'rose-pine/neovim', as = 'rose-pine' })
+  use "EdenEast/nightfox.nvim" -- Packer
 
   use { -- 状态栏
-    'nvim-lualine/lualine.nvim', 
+    'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
 
   use 'nvim-tree/nvim-web-devicons' -- 图标库
 
-  use { -- 文档树
-   'nvim-tree/nvim-tree.lua',
+  use {                             -- 文档树
+    'nvim-tree/nvim-tree.lua',
   }
 
-  use("christoomey/vim-tmux-navigator") -- 窗口导航
+  use("christoomey/vim-tmux-navigator")                                                     -- 窗口导航
 
-  use "nvim-treesitter/nvim-treesitter" -- 语法高亮
+  use "nvim-treesitter/nvim-treesitter"                                                     -- 语法高亮
 
-  use "p00f/nvim-ts-rainbow" -- 括号颜色区分
+  use "p00f/nvim-ts-rainbow"                                                                -- 括号颜色区分
 
-  use "numToStr/Comment.nvim" -- gcc和gc注释
+  use "numToStr/Comment.nvim"                                                               -- gcc和gc注释
 
-  use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'} -- buffer栏
+  use { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' } -- buffer栏
 
-  use "lewis6991/gitsigns.nvim" -- 左则git提示
+  use "lewis6991/gitsigns.nvim"                                                             -- 左则git提示
 
-  use { -- telescope
+  use {                                                                                     -- telescope
     'nvim-telescope/telescope.nvim', tag = '0.1.1',
-    requires = { {'nvim-lua/plenary.nvim'} }
+    requires = { { 'nvim-lua/plenary.nvim' } }
   }
 
   use "lukas-reineke/indent-blankline.nvim" -- 缩进指引
 
   -- 终端管理器
-  use {"akinsho/toggleterm.nvim" }
+  use { "akinsho/toggleterm.nvim" }
 
-  use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'} -- 代码折叠
+  use { 'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async' } -- 代码折叠
+
+  use {
+    "windwp/nvim-autopairs",
+    config = function() require("nvim-autopairs").setup {} end
+  }
 
   -- 欢迎页
   use "startup-nvim/startup.nvim"
 
   -- coc
-  use {'neoclide/coc.nvim', branch = 'release'}
+  -- use {'neoclide/coc.nvim', branch = 'release'}
 
   use({ --命令可视化
     'mrjones2014/legendary.nvim',
@@ -82,9 +81,10 @@ return require('packer').startup(function(use)
     -- requires = 'kkharji/sqlite.lua'
   })
 
-  use {'stevearc/dressing.nvim'} -- Command UI 美化
+  use { 'stevearc/dressing.nvim' } -- Command UI 美化
 
-  use({ -- 编辑器快速跳转
+  use({
+    -- 编辑器快速跳转
     'ggandor/leap.nvim',
     config = function()
       require('leap').add_default_mappings()
@@ -104,19 +104,20 @@ return require('packer').startup(function(use)
     end
   }
 
-  use({ --环绕编辑
-      "kylechui/nvim-surround",
-      tag = "*", -- Use for stability; omit to use `main` branch for the latest features
-      config = function()
-          require("nvim-surround").setup({
-              -- Configuration here, or leave empty to use defaults
-          })
-      end
+  use({
+    --环绕编辑
+    "kylechui/nvim-surround",
+    tag = "*", -- Use for stability; omit to use `main` branch for the latest features
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end
   })
 
   use 'gelguy/wilder.nvim' -- 命令补全
 
-  use { -- error审查
+  use {                    -- error审查
     "folke/trouble.nvim",
     requires = "nvim-tree/nvim-web-devicons",
     config = function()
@@ -127,7 +128,7 @@ return require('packer').startup(function(use)
   use { -- 淡化未使用的Symbol
     "zbirenbaum/neodim",
     event = "LspAttach",
-    config = function ()
+    config = function()
       require("neodim").setup({
         alpha = 0.75,
         blend_color = "#000000",
@@ -145,6 +146,34 @@ return require('packer').startup(function(use)
   }
 
   use 'keaising/im-select.nvim' -- 输入法自动切换
+
+  -- LSP
+  use {
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "neovim/nvim-lspconfig",
+  }
+
+  -- 代码补全
+  use {
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/nvim-cmp',
+    'L3MON4D3/LuaSnip',
+    'saadparwaiz1/cmp_luasnip',
+    'rafamadriz/friendly-snippets'
+  }
+
+  -- 额外的lsp实现formatter与linter
+  use({
+    "jose-elias-alvarez/null-ls.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+  })
+  use "MunifTanjim/prettier.nvim"
+
+  use "onsails/lspkind-nvim" -- 智能补全美化
 
   if packer_bootstrap then
     require('packer').sync()

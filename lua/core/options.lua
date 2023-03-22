@@ -1,3 +1,7 @@
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 local opt = vim.opt
 
 -- 行号
@@ -33,4 +37,7 @@ opt.splitbelow = true
 -- 外观
 opt.termguicolors = true
 opt.signcolumn = "yes"
--- vim.cmd[[colorscheme tokyonight-night]] -- 默认主题设置
+-- opt.pumblend= 15 -- 弹出菜单透明度
+
+vim.opt.background = "dark" -- set this to dark or light
+vim.cmd.colorscheme "oxocarbon"
