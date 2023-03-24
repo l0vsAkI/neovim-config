@@ -151,7 +151,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
 
 -- HACK: 需要接管的lsp服务名[ps:不是包名]放在这个table里
-  local lspServers = { 'lua_ls', 'tsserver', 'html','jsonls','cssls','marksman','vuels' }
+  local lspServers = { 'lua_ls', 'tsserver', 'html','jsonls','cssls','marksman','volar' }
 
 for key, val in pairs(lspServers) do
   require('lspconfig')[val].setup {
