@@ -33,21 +33,26 @@ vim.api.nvim_create_autocmd("LspAttach", {
 return {
 	{
 		"williamboman/mason.nvim",
-		opts = {
-			ui = {
-				icons = {
-					package_installed = "✓",
-					package_pending = "➜",
-					package_uninstalled = "✗",
+		build = ":MasonUpdate", -- :MasonUpdate updates registry contents
+		config = function()
+			require("mason").setup({
+				ui = {
+					icons = {
+						package_installed = "✓",
+						package_pending = "➜",
+						package_uninstalled = "✗",
+					},
 				},
-			},
-		},
+			})
+		end,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		opts = {
-			ensure_installed = {},
-		},
+		config = function()
+			require("mason-lspconfig").setup({
+				ensure_installed = { "lua_ls", "tsserver", "cssls", "volar" },
+			})
+		end,
 	},
 
 	{
@@ -58,6 +63,7 @@ return {
 			local lspconfig = require("lspconfig")
 			lspconfig.lua_ls.setup({})
 			lspconfig.tsserver.setup({})
+			lspconfig.cssls.setup({})
 			lspconfig.volar.setup({
 				filetypes = { "vue" },
 			})
