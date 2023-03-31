@@ -1,5 +1,8 @@
-require("lualine").setup({
-	options = {
-		theme = "auto",
+return {
+	{ -- 状态栏
+		"nvim-lualine/lualine.nvim",
+		opts = {
+			theme = "auto",
+		},
 	},
-})
+}

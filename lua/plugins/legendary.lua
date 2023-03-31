@@ -1,10 +1,4 @@
-require('legendary').setup({
-  keymaps = {
-  },
-  commands = {
-  },
-  funcs = {
-  },
-  autocmds = {
-  },
-})
+return {
+	"mrjones2014/legendary.nvim",
+	dependencies = { "kkharji/sqlite.lua" },
+}

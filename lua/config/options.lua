@@ -40,4 +40,4 @@ opt.signcolumn = "yes"
 -- opt.pumblend= 15 -- 弹出菜单透明度
 
 vim.opt.background = "dark" -- set this to dark or light
-vim.cmd.colorscheme "oxocarbon"
+--vim.cmd.colorscheme "oxocarbon"
