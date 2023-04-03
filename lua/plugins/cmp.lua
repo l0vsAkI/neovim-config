@@ -1,9 +1,10 @@
 return {
-  {"windwp/nvim-autopairs",
-    config = function ()
-      require("nvim-autopairs").setup()
-    end
-  }, -- 更智能的代码块边界匹配
+	{
+		"windwp/nvim-autopairs",
+		config = function()
+			require("nvim-autopairs").setup()
+		end,
+	}, -- 更智能的代码块边界匹配
 	"onsails/lspkind-nvim", -- 智能补全美化
 	{
 		"hrsh7th/cmp-nvim-lsp", -- 代码自动补全
