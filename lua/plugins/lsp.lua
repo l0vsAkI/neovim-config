@@ -33,41 +33,52 @@ vim.api.nvim_create_autocmd("LspAttach", {
 return {
 	{
 		"williamboman/mason.nvim",
-		build = ":MasonUpdate", -- :MasonUpdate updates registry contents
-		config = function()
-			require("mason").setup({
-				ui = {
-					icons = {
-						package_installed = "✓",
-						package_pending = "➜",
-						package_uninstalled = "✗",
-					},
+		build = ":MasonUpdate",
+		opts = {
+			ui = {
+				icons = {
+					package_installed = "✓",
+					package_pending = "➜",
+					package_uninstalled = "✗",
 				},
-			})
-		end,
+			},
+		},
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
+		opts = {
+			ensure_installed = { "lua_ls", "tsserver", "cssls", "volar" },
+		},
 		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "tsserver", "cssls", "volar" },
+			require("mason-lspconfig").setup_handlers({
+				-- The first entry (without a key) will be the default handler
+				-- and will be called for each installed server that doesn't have
+				-- a dedicated handler.
+				function(server_name) -- default handler (optional)
+					require("lspconfig")[server_name].setup({})
+				end,
+				-- Next, you can provide a dedicated handler for specific servers.
+				-- For example, a handler override for the `rust_analyzer`:
 			})
 		end,
 	},
-
 	{
 		"neovim/nvim-lspconfig",
-		config = function()
-			-- HACK: init LSP
-			-- Setup language servers.
-			local lspconfig = require("lspconfig")
-			lspconfig.lua_ls.setup({})
-			lspconfig.tsserver.setup({})
-			lspconfig.cssls.setup({})
-			lspconfig.volar.setup({
-				filetypes = { "vue" },
-			})
-			lspconfig.marksman.setup({})
-		end,
+		-- config = function()
+		-- HACK: init LSP
+		-- local lspconfig = require("lspconfig")
+		-- lspconfig.lua_ls.setup({})
+		-- lspconfig.tsserver.setup({})
+		-- lspconfig.cssls.setup({})
+		-- lspconfig.volar.setup({
+		-- 	filetypes = { "vue" },
+		-- })
+		-- lspconfig.marksman.setup({})
+		-- end,
+	},
+	{
+		-- LSP附载进度展示
+		"j-hui/fidget.nvim",
+		opts = {},
 	},
 }
