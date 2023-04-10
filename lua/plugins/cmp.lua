@@ -73,41 +73,6 @@ return {
 				},
 			})
 
-			-- 修复主题造成的菜单展示奇怪现象
-			for _, kind in ipairs({
-				"Interface",
-				"Color",
-				"TypeParameter",
-				"Text",
-				"Enum",
-				"Keyword",
-				"Constant",
-				"Constructor",
-				"Reference",
-				"Function",
-				"Struct",
-				"Class",
-				"Module",
-				"Operator",
-				"Field",
-				"Property",
-				"Event",
-				"Unit",
-				"Snippet",
-				"Folder",
-				"Variable",
-				"File",
-				"Method",
-				"Value",
-				"EnumMember",
-			}) do
-				local group = string.format("CmpItemKind%s", kind)
-				local bg = vim.api.nvim_get_hl_by_name(group, true)["background"]
-				bg = bg and string.format("#%06X", bg) or "NONE"
-
-				vim.api.nvim_set_hl(0, group, { fg = bg })
-			end
-
 			-- Set up lspconfig.
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
