@@ -18,7 +18,7 @@ return {
 		config = function()
 			require("nvim-treesitter.configs").setup({
 				-- 添加不同语言
-				ensure_installed = { "lua", "vim" },
+				ensure_installed = {},
 				highlight = {
 					enable = true,
 				},
