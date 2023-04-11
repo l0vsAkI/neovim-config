@@ -44,12 +44,11 @@ return {
 			},
 		},
 	},
+	"neovim/nvim-lspconfig",
 	{
 		"williamboman/mason-lspconfig.nvim",
-		opts = {
-			ensure_installed = { "lua_ls", "tsserver", "cssls", "volar" },
-		},
 		config = function()
+			-- NOTE:  自动加载安装的LSP服务
 			require("mason-lspconfig").setup_handlers({
 				-- The first entry (without a key) will be the default handler
 				-- and will be called for each installed server that doesn't have
@@ -61,20 +60,6 @@ return {
 				-- For example, a handler override for the `rust_analyzer`:
 			})
 		end,
-	},
-	{
-		"neovim/nvim-lspconfig",
-		-- config = function()
-		-- HACK: init LSP
-		-- local lspconfig = require("lspconfig")
-		-- lspconfig.lua_ls.setup({})
-		-- lspconfig.tsserver.setup({})
-		-- lspconfig.cssls.setup({})
-		-- lspconfig.volar.setup({
-		-- 	filetypes = { "vue" },
-		-- })
-		-- lspconfig.marksman.setup({})
-		-- end,
 	},
 	{
 		-- LSP附载进度展示
