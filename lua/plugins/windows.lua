@@ -1,4 +1,4 @@
--- 窗口动画与自动展开
+-- NOTE: 窗口动画与自动展开
 return {
 	"anuvyklack/windows.nvim",
 	dependencies = {

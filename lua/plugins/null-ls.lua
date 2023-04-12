@@ -1,3 +1,4 @@
+-- NOTE: null-ls提供DAP与formatter服务
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 return {
 	"jose-elias-alvarez/null-ls.nvim",
@@ -6,6 +7,7 @@ return {
 		local null_ls = require("null-ls")
 
 		null_ls.setup({
+			-- HACK: 在Mason中安装的source需要在此配置
 			sources = { null_ls.builtins.formatting.prettier, null_ls.builtins.formatting.stylua },
 			on_attach = function(client, bufnr)
 				-- 代码格式化

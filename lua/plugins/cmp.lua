@@ -1,3 +1,4 @@
+-- NOTE: 自动补全菜单
 return {
 	{
 		"windwp/nvim-autopairs",

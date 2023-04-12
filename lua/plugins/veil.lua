@@ -1,3 +1,4 @@
+-- NOTE: 欢迎页
 return {
 	"willothy/veil.nvim",
 	dependencies = {
@@ -5,5 +6,5 @@ return {
 		"nvim-lua/plenary.nvim",
 		"nvim-telescope/telescope-file-browser.nvim",
 	},
-  config = true
+	config = true,
 }

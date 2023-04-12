@@ -1,3 +1,4 @@
+-- NOTE: 输入法自动切换
 return {
 	"keaising/im-select.nvim",
 	opts = {

@@ -1,3 +1,4 @@
+-- NOTE: 欢迎界面
 local headerAscii = {
 	"",
 	"",
@@ -58,7 +59,7 @@ local hyperConfig = {
 return {
 	"glepnir/dashboard-nvim",
 	event = "VimEnter",
-  cond = false,
+	cond = false,
 	opts = {
 		theme = "hyper",
 		config = hyperConfig,

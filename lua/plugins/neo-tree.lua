@@ -1,3 +1,4 @@
+-- NOTE: 文件管理
 return {
 	"nvim-neo-tree/neo-tree.nvim",
 	branch = "v2.x",

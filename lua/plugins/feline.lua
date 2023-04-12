@@ -1,3 +1,4 @@
+-- NOTE: status line
 local theme = {
 	aqua = "#7AB0DF",
 	bg = "#1C212A",

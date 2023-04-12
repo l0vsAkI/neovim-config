@@ -37,7 +37,6 @@
   "nvim-web-devicons": { "branch": "master", "commit": "f16ec8f6e5d23e4349501dae46e0a661918e086e" },
   "oxocarbon.nvim": { "branch": "main", "commit": "be12ad8a9607a195d0fc081af0bf3cd38b095d12" },
   "plenary.nvim": { "branch": "master", "commit": "0c31c398261567cda89b66ddffc69d39495f63ae" },
-  "prettier.nvim": { "branch": "main", "commit": "08f7f08fae57fd970c7470d883c9127f172bd9e6" },
   "promise-async": { "branch": "main", "commit": "e94f35161b8c5d4a4ca3b6ff93dd073eb9214c0e" },
   "sqlite.lua": { "branch": "master", "commit": "376e4735c48e07dade3e6ff5f09a654a04f5d4ba" },
   "telescope-file-browser.nvim": { "branch": "master", "commit": "e0fcb12702ad0d2873544a31730f9aaef04fd032" },
