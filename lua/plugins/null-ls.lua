@@ -7,8 +7,10 @@ return {
 		local null_ls = require("null-ls")
 
 		null_ls.setup({
-			-- HACK: 在Mason中安装的source需要在此配置
-			sources = { null_ls.builtins.formatting.prettier, null_ls.builtins.formatting.stylua },
+			sources = {
+				null_ls.builtins.formatting.prettier,
+				null_ls.builtins.formatting.stylua,
+			},
 			on_attach = function(client, bufnr)
 				-- 代码格式化
 				if client.supports_method("textDocument/formatting") then
