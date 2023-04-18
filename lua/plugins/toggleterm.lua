@@ -1,6 +1,11 @@
 -- NOTE: 内嵌终端
 return {
-	{ "akinsho/toggleterm.nvim", version = "*", opts = {
-		open_mapping = [[<c-\>]],
-	} },
+	{
+		"akinsho/toggleterm.nvim",
+		version = "*",
+		cond = false,
+		opts = {
+			open_mapping = [[<c-\>]],
+		},
+	},
 }
