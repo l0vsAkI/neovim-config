@@ -8,7 +8,11 @@ return {
 	},
 	event = "LspAttach",
 	config = function()
-		require("lspsaga").setup({})
+		require("lspsaga").setup({
+      symbol_in_winbar = {
+        enable = false
+      }
+    })
 
 		local keymap = vim.keymap.set
 
