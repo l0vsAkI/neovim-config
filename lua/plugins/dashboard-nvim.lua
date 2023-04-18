@@ -3,12 +3,10 @@
 return {
 	"glepnir/dashboard-nvim",
 	event = "VimEnter",
-	cond = true,
 	config = function()
 		require("dashboard").setup({
 			theme = "hyper",
 			config = {
-
 				week_header = {
 					enable = true,
 				},

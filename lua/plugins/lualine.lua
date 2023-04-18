@@ -2,7 +2,11 @@
 return {
 	{
 		"nvim-lualine/lualine.nvim",
-		cond = false,
-		opts = {},
+		cond = true,
+		opts = {
+			options = {
+				theme = "horizon",
+			},
+		},
 	},
 }
