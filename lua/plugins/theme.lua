@@ -1,6 +1,5 @@
 -- NOTE: 主题
 return {
-	"nyoom-engineering/oxocarbon.nvim",
 	{
 		"rebelot/kanagawa.nvim",
 		opts = {
@@ -42,9 +41,8 @@ return {
 		},
 	},
 	{
-		"gbprod/nord.nvim",
+		"nyoom-engineering/oxocarbon.nvim",
 		config = function()
-			-- vim.cmd([[colorscheme nord]])
 			vim.cmd([[colorscheme kanagawa]])
 		end,
 	},
