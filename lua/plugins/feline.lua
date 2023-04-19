@@ -39,32 +39,8 @@ return {
 			["NONE"] = theme.gray,
 			["COMMAND"] = theme.blue,
 		}
-		local one_monokai = {
-			fg = "#abb2bf",
-			bg = "#1e2024",
-			green = "#98c379",
-			yellow = "#e5c07b",
-			purple = "#c678dd",
-			orange = "#d19a66",
-			peanut = "#f6d5a4",
-			red = "#e06c75",
-			aqua = "#61afef",
-			darkblue = "#282c34",
-			dark_red = "#f75f5f",
-		}
 
-		local vi_mode_colors = {
-			NORMAL = "green",
-			OP = "green",
-			INSERT = "yellow",
-			VISUAL = "purple",
-			LINES = "orange",
-			BLOCK = "dark_red",
-			REPLACE = "red",
-			COMMAND = "aqua",
-		}
-
-		local c = {
+		local component = {
 			vim_mode = {
 				provider = function()
 					return vim.api.nvim_get_mode().mode:upper()
@@ -83,39 +59,39 @@ return {
 			gitBranch = {
 				provider = "git_branch",
 				hl = {
-					fg = "peanut",
-					bg = "darkblue",
+					fg = "fg",
+					bg = "gray",
 					style = "bold",
 				},
 				left_sep = "block",
-				right_sep = "block",
+				right_sep = "",
 			},
 			gitDiffAdded = {
 				provider = "git_diff_added",
 				hl = {
 					fg = "green",
-					bg = "darkblue",
+					bg = "bg",
 				},
-				left_sep = "block",
-				right_sep = "block",
+				left_sep = "",
+				right_sep = "",
 			},
 			gitDiffRemoved = {
 				provider = "git_diff_removed",
 				hl = {
 					fg = "red",
-					bg = "darkblue",
+					bg = "bg",
 				},
-				left_sep = "block",
-				right_sep = "block",
+				left_sep = "",
+				right_sep = "",
 			},
 			gitDiffChanged = {
 				provider = "git_diff_changed",
 				hl = {
-					fg = "fg",
-					bg = "darkblue",
+					fg = "purple",
+					bg = "bg",
 				},
-				left_sep = "block",
-				right_sep = "right_filled",
+				left_sep = "",
+				right_sep = "",
 			},
 			separator = {
 				provider = "",
@@ -158,7 +134,7 @@ return {
 				provider = "lsp_client_names",
 				hl = {
 					fg = "purple",
-					bg = "darkblue",
+					bg = "bg",
 					style = "bold",
 				},
 				left_sep = "left_filled",
@@ -169,13 +145,11 @@ return {
 					name = "file_type",
 					opts = {
 						filetype_icon = true,
-						case = "titlecase",
 					},
 				},
 				hl = {
-					fg = "red",
-					bg = "darkblue",
-					style = "bold",
+					fg = "fg",
+					bg = "bg",
 				},
 				left_sep = "block",
 				right_sep = "block",
@@ -184,65 +158,104 @@ return {
 				provider = "file_encoding",
 				hl = {
 					fg = "orange",
-					bg = "darkblue",
+					bg = "bg",
 					style = "italic",
 				},
 				left_sep = "block",
 				right_sep = "block",
 			},
-			position = {
-				provider = "position",
-				hl = {
-					fg = "green",
-					bg = "darkblue",
-					style = "bold",
-				},
-				left_sep = "block",
-				right_sep = "block",
-			},
-			line_percentage = {
-				provider = "line_percentage",
-				hl = {
-					fg = "aqua",
-					bg = "darkblue",
-					style = "bold",
-				},
-				left_sep = "block",
-				right_sep = "block",
-			},
 			scroll_bar = {
-				provider = "scroll_bar",
-				hl = {
-					fg = "yellow",
-					style = "bold",
-				},
+				provider = function()
+					local chars = {
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+						" ",
+					}
+					local line_ratio = vim.api.nvim_win_get_cursor(0)[1] / vim.api.nvim_buf_line_count(0)
+					local position = math.floor(line_ratio * 100)
+
+					if position <= 5 then
+						position = " TOP"
+					elseif position >= 95 then
+						position = " BOT"
+					else
+						position = chars[math.floor(line_ratio * #chars)] .. position
+					end
+					return position
+				end,
+				hl = function()
+					local position =
+						math.floor(vim.api.nvim_win_get_cursor(0)[1] / vim.api.nvim_buf_line_count(0) * 100)
+					local fg
+					local style
+
+					if position <= 5 then
+						fg = "aqua"
+						style = "bold"
+					elseif position >= 95 then
+						fg = "red"
+						style = "bold"
+					else
+						fg = "purple"
+						style = nil
+					end
+					return {
+						fg = fg,
+						style = "bold",
+						bg = "gray",
+					}
+				end,
+				left_sep = "block",
+				right_sep = "block",
 			},
 		}
 
 		local left = {
-			c.vim_mode,
-			c.gitBranch,
-			c.gitDiffAdded,
-			c.gitDiffRemoved,
-			c.gitDiffChanged,
-			c.separator,
+			component.vim_mode,
+			component.gitBranch,
+			component.gitDiffAdded,
+			component.gitDiffRemoved,
+			component.gitDiffChanged,
+			component.separator,
 		}
 
 		local middle = {
-			c.fileinfo,
-			c.diagnostic_errors,
-			c.diagnostic_warnings,
-			c.diagnostic_info,
-			c.diagnostic_hints,
+			-- component.fileinfo,
+			component.diagnostic_errors,
+			component.diagnostic_warnings,
+			component.diagnostic_info,
+			component.diagnostic_hints,
 		}
 
 		local right = {
-			c.lsp_client_names,
-			c.file_type,
-			c.file_encoding,
-			c.position,
-			c.line_percentage,
-			c.scroll_bar,
+			component.file_type,
+			component.lsp_client_names,
+			component.scroll_bar,
 		}
 
 		local components = {
