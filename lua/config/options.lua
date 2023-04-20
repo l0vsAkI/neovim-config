@@ -14,7 +14,7 @@ opt.autoindent = true
 opt.wrap = false
 
 -- 光标行高亮
-opt.cursorline = false
+opt.cursorline = true
 
 -- 启用鼠标
 opt.mouse:append("a")
