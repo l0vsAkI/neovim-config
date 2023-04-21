@@ -40,6 +40,7 @@ return {
 			end,
 		},
 	},
+	"CantoroMC/ayu-nvim",
 	"B4mbus/oxocarbon-lua.nvim",
 	{
 		"nyoom-engineering/oxocarbon.nvim",
