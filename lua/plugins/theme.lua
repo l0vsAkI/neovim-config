@@ -40,10 +40,11 @@ return {
 			end,
 		},
 	},
+	"B4mbus/oxocarbon-lua.nvim",
 	{
 		"nyoom-engineering/oxocarbon.nvim",
 		config = function()
-			vim.cmd([[colorscheme kanagawa]])
+			vim.cmd([[colorscheme oxocarbon-lua]])
 		end,
 	},
 }
