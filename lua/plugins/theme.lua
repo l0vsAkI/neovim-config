@@ -45,7 +45,7 @@ return {
 	{
 		"nyoom-engineering/oxocarbon.nvim",
 		config = function()
-			vim.cmd([[colorscheme oxocarbon-lua]])
+			vim.cmd([[colorscheme ayu]])
 		end,
 	},
 }
