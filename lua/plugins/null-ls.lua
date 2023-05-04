@@ -11,7 +11,6 @@ return {
 			sources = {
 				null_ls.builtins.formatting.prettier,
 				null_ls.builtins.formatting.stylua,
-				null_ls.builtins.diagnostics.eslint_d,
 			},
 			on_attach = function(client, bufnr)
 				-- 代码格式化

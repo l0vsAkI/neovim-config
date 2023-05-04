@@ -254,7 +254,7 @@ return {
 
 		local right = {
 			component.file_type,
-			component.lsp_client_names,
+			-- component.lsp_client_names,
 			component.scroll_bar,
 		}
 
