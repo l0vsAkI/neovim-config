@@ -1,4 +1,4 @@
-# neovim-config
+# 💤 LazyVim
 
-* 使用lazy作为插件包管理器
-* 各插件返回的table里传入opts选项会自动require("<MAIN>").setup(opts)
+A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
+Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
