@@ -5,4 +5,4 @@
 local opt = vim.opt
 
 opt.list = false -- 显示一些不可见字符(比如 tabs...
-opt.pumblend = 10 -- Popup blend
+opt.pumblend = 0 -- Popup blend
