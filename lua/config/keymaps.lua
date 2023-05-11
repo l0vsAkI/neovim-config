@@ -5,5 +5,3 @@
 local keymap = vim.keymap
 
 local Util = require("lazyvim.util")
-
-keymap.set("n", "<leader>h", ":nohl<CR>")
