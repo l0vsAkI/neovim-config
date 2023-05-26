@@ -7,6 +7,9 @@ return {
   },
   { "echasnovski/mini.surround", enabled = false },
   {
+    "folke/noice.nvim",
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
       window = {
@@ -20,6 +23,10 @@ return {
   },
   {
     "akinsho/bufferline.nvim",
+    keys = {
+      { "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Close right buffers" },
+      { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Close left buffers" },
+    },
     opts = {
       options = {
         buffer_close_icon = " ",
