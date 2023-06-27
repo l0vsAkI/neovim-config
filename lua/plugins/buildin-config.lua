@@ -5,6 +5,10 @@ return {
       colorscheme = "ayu", -- 加载默认主题
     },
   },
+  {
+    "dstein64/vim-startuptime",
+    enabled = false,
+  },
   { "echasnovski/mini.surround", enabled = false },
   {
     "folke/noice.nvim",
