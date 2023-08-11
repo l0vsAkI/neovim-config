@@ -2,7 +2,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "ayu", -- 加载默认主题
+      colorscheme = "oxocarbon-lua", -- 加载默认主题
     },
   },
   {
@@ -12,6 +12,12 @@ return {
   { "echasnovski/mini.surround", enabled = false },
   {
     "folke/noice.nvim",
+  },
+  {
+    "rcarriga/nvim-notify",
+    opts = {
+      timeout = 1000,
+    },
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
@@ -119,6 +125,7 @@ return {
       -- 补全菜单美化
       local lspkind = require("lspkind")
       opts.formatting = {
+        expandable_indicator = true,
         fields = { "kind", "abbr" },
         format = function(entry, vim_item)
           local kind = lspkind.cmp_format({ mode = "symbol", maxwidth = 80 })(entry, vim_item)
