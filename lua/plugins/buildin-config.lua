@@ -5,20 +5,35 @@ return {
       colorscheme = "oxocarbon-lua", -- 加载默认主题
     },
   },
+
+  -- Coding
   {
-    "dstein64/vim-startuptime",
-    enabled = false,
-  },
-  { "echasnovski/mini.surround", enabled = false },
-  {
-    "folke/noice.nvim",
-  },
-  {
-    "rcarriga/nvim-notify",
-    opts = {
-      timeout = 1000,
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "onsails/lspkind-nvim", -- 智能补全菜单美化
     },
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      local cmp = require("cmp")
+      opts.mapping = cmp.mapping.preset.insert({
+        ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+      })
+
+      -- 补全菜单美化
+      local lspkind = require("lspkind")
+      opts.formatting = {
+        expandable_indicator = true,
+        fields = { "kind", "abbr" },
+        format = function(entry, vim_item)
+          local kind = lspkind.cmp_format({ mode = "symbol", maxwidth = 80 })(entry, vim_item)
+          return kind
+        end,
+      }
+    end,
   },
+  { "echasnovski/mini.surround", cond = false },
+
+  -- Editor
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
@@ -26,10 +41,6 @@ return {
         position = "float",
       },
     },
-  },
-  {
-    "SmiteshP/nvim-navic",
-    enabled = false,
   },
   {
     "akinsho/bufferline.nvim",
@@ -45,9 +56,8 @@ return {
   },
   {
     "nvim-lualine/lualine.nvim",
-    opts = function(plugin)
+    opts = function(_)
       local icons = require("lazyvim.config").icons
-
       local function fg(name)
         return function()
           ---@type {foreground?:number}?
@@ -55,7 +65,6 @@ return {
           return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
         end
       end
-
       return {
         options = {
           theme = "auto",
@@ -100,6 +109,38 @@ return {
       }
     end,
   },
+
+  -- LSP
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      -- make sure mason installs the server
+      servers = {
+        ---@type lspconfig.options.tsserver
+        tsserver = {
+          settings = {
+            completions = {
+              completeFunctionCalls = true,
+            },
+          },
+        },
+      },
+      setup = {
+        tsserver = function(_, opts)
+          require("lazyvim.util").on_attach(function(client, buffer)
+            if client.name == "tsserver" then
+          -- stylua: ignore
+          vim.keymap.set("n", "<leader>co", "<cmd>TypescriptOrganizeImports<CR>", { buffer = buffer, desc = "Organize Imports" })
+          -- stylua: ignore
+          vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = buffer })
+            end
+          end)
+          require("typescript").setup({ server = opts })
+          return true
+        end,
+      },
+    },
+  },
   {
     "williamboman/mason.nvim",
     opts = {
@@ -112,26 +153,20 @@ return {
       },
     },
   },
-  "onsails/lspkind-nvim", -- 智能补全美化
-  {
-    "hrsh7th/nvim-cmp",
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      local cmp = require("cmp")
-      opts.mapping = cmp.mapping.preset.insert({
-        ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-      })
 
-      -- 补全菜单美化
-      local lspkind = require("lspkind")
-      opts.formatting = {
-        expandable_indicator = true,
-        fields = { "kind", "abbr" },
-        format = function(entry, vim_item)
-          local kind = lspkind.cmp_format({ mode = "symbol", maxwidth = 80 })(entry, vim_item)
-          return kind
-        end,
-      }
+  -- treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, { "typescript", "tsx" })
+      end
     end,
+  },
+
+  -- UI
+  {
+    "SmiteshP/nvim-navic",
+    cond = false,
   },
 }
