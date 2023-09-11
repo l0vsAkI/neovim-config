@@ -8,6 +8,12 @@ return {
 
   -- Coding
   {
+    "L3MON4D3/LuaSnip",
+    keys = function()
+      return {} -- supertab keymap overwrite
+    end,
+  },
+  {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "onsails/lspkind-nvim", -- 智能补全菜单美化
@@ -110,6 +116,16 @@ return {
     end,
   },
 
+  -- treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      if type(opts.ensure_installed) == "table" then
+        vim.list_extend(opts.ensure_installed, { "typescript", "tsx", "vue" })
+      end
+    end,
+  },
+
   -- LSP
   {
     "neovim/nvim-lspconfig",
@@ -129,10 +145,10 @@ return {
         tsserver = function(_, opts)
           require("lazyvim.util").on_attach(function(client, buffer)
             if client.name == "tsserver" then
-          -- stylua: ignore
-          vim.keymap.set("n", "<leader>co", "<cmd>TypescriptOrganizeImports<CR>", { buffer = buffer, desc = "Organize Imports" })
-          -- stylua: ignore
-          vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = buffer })
+              -- stylua: ignore
+              vim.keymap.set("n", "<leader>co", "<cmd>TypescriptOrganizeImports<CR>", { buffer = buffer, desc = "Organize Imports" })
+              -- stylua: ignore
+              vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>", { desc = "Rename File", buffer = buffer })
             end
           end)
           require("typescript").setup({ server = opts })
@@ -144,6 +160,7 @@ return {
   {
     "williamboman/mason.nvim",
     opts = {
+      ensure_installed = { "vue-language-server" },
       ui = {
         icons = {
           package_installed = "✓",
@@ -152,16 +169,6 @@ return {
         },
       },
     },
-  },
-
-  -- treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "typescript", "tsx" })
-      end
-    end,
   },
 
   -- UI
