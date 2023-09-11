@@ -39,7 +39,7 @@ return {
   },
   { "echasnovski/mini.surround", cond = false },
 
-  -- Editor
+  -- Editor UI
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
@@ -51,8 +51,9 @@ return {
   {
     "akinsho/bufferline.nvim",
     keys = {
-      { "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Close right buffers" },
-      { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Close left buffers" },
+      { "<leader>br", "<Cmd>BufferLineCloseRight<CR>",  desc = "Close right buffers" },
+      { "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>",   desc = "Close left buffers" },
+      { "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "Close left buffers" },
     },
     opts = {
       options = {
