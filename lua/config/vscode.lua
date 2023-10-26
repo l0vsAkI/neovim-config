@@ -50,27 +50,6 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 
 require("lazy").setup({
-  {
-    "ggandor/leap.nvim",
-    config = function()
-      require("leap").add_default_mappings()
-    end,
-  },
-  {
-    "wingforth/nvim-im-select",
-    opts = {
-      im_select_cmd = "C:\\im-select\\im-select.exe",
-      default_im = "1033",
-    },
-  },
-  {
-    "kylechui/nvim-surround",
-    version = "*", -- Use for stability; omit to use `main` branch for the latest features
-    event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup({
-        -- Configuration here, or leave empty to use defaults
-      })
-    end,
-  },
+  { "LazyVim/LazyVim", import = "lazyvim.plugins" },
+  { import = "lazyvim.plugins.extras.vscode" },
 })

@@ -120,45 +120,11 @@ return {
   -- treesitter
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      if type(opts.ensure_installed) == "table" then
-        vim.list_extend(opts.ensure_installed, { "typescript", "tsx", "vue" })
-      end
-    end,
   },
 
   -- LSP
   {
     "neovim/nvim-lspconfig",
-    opts = {
-      -- make sure mason installs the server
-      servers = {
-        ---@type lspconfig.options.tsserver
-        tsserver = {
-          settings = {
-            completions = {
-              completeFunctionCalls = true,
-            },
-          },
-        },
-      },
-      setup = {
-        tsserver = function(_, opts)
-          require("lazyvim.util").on_attach(function(client, buffer)
-            if client.name == "tsserver" then
-              -- stylua: ignore
-              vim.keymap.set("n", "<leader>co", "<cmd>TypescriptOrganizeImports<CR>",
-                { buffer = buffer, desc = "Organize Imports" })
-              -- stylua: ignore
-              vim.keymap.set("n", "<leader>cR", "<cmd>TypescriptRenameFile<CR>",
-                { desc = "Rename File", buffer = buffer })
-            end
-          end)
-          require("typescript").setup({ server = opts })
-          return true
-        end,
-      },
-    },
   },
   {
     "williamboman/mason.nvim",
@@ -175,36 +141,15 @@ return {
 
   -- UI
   {
-    "SmiteshP/nvim-navic",
-    cond = false,
-  },
-  {
     "folke/noice.nvim",
-    event = "VeryLazy",
-    opts = {
-      lsp = {
-        progress = {
-          enabled = false,
+    opts = function(_, opts)
+      table.insert(opts.routes, { -- 解决多个lsp-server导致的文档提示报错
+        filter = {
+          event = "notify",
+          find = "No information available",
         },
-        override = {
-          ["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-          ["vim.lsp.util.stylize_markdown"] = true,
-        },
-      },
-      presets = {
-        bottom_search = true,
-        command_palette = true,
-        long_message_to_split = true,
-      },
-    },
-    -- stylua: ignore
-    keys = {
-      { "<S-Enter>", function() require("noice").redirect(vim.fn.getcmdline()) end, mode = "c", desc = "Redirect Cmdline" },
-      { "<leader>snl", function() require("noice").cmd("last") end, desc = "Noice Last Message" },
-      { "<leader>snh", function() require("noice").cmd("history") end, desc = "Noice History" },
-      { "<leader>sna", function() require("noice").cmd("all") end, desc = "Noice All" },
-      { "<c-f>", function() if not require("noice.lsp").scroll(4) then return "<c-f>" end end, silent = true, expr = true, desc = "Scroll forward", mode = {"i", "n", "s"} },
-      { "<c-b>", function() if not require("noice.lsp").scroll(-4) then return "<c-b>" end end, silent = true, expr = true, desc = "Scroll backward", mode = {"i", "n", "s"}},
-    },
+        opts = { skip = true },
+      })
+    end,
   },
 }
