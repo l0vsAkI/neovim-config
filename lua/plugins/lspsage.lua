@@ -1,11 +1,6 @@
 -- NOTE: LSP体验增强, 包括UI, 快捷操作, 浮动终端
 return {
   "glepnir/lspsaga.nvim",
-  dependencies = {
-    { "nvim-tree/nvim-web-devicons" },
-    -- NOTE: Please make sure you install markdown and markdown_inline parser
-    { "nvim-treesitter/nvim-treesitter" },
-  },
   event = "LspAttach",
   config = function()
     require("lspsaga").setup({
@@ -15,71 +10,64 @@ return {
       symbol_in_winbar = {
         enable = false,
       },
+      lightbulb = {
+        enable = false,
+      },
     })
+  end,
 
-    local keymap = vim.keymap.set
+  keys = {
 
     -- LSP finder - Find the symbol's definition
     -- If there is no definition, it will instead be hidden
     -- When you use an action in finder like "open vsplit",
     -- you can use <C-t> to jump back
-    keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
-
-    -- Code action
-    keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
+    { "gh", "<cmd>Lspsaga lsp_finder<CR>", desc = "LSP Finder" },
 
     -- Rename all occurrences of the hovered word for the entire file
-    keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
+    { "gr", "<cmd>Lspsaga rename<CR>", desc = "rename" },
 
     -- Peek definition
     -- You can edit the file containing the definition in the floating window
     -- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
     -- It also supports tagstack
     -- Use <C-t> to jump back
-    keymap("n", "gp", "<cmd>Lspsaga peek_definition<CR>")
+    { "gp", "<cmd>Lspsaga peek_definition<CR>", desc = "Peek definition" },
 
     -- Go to definition
-    keymap("n", "gd", "<cmd>Lspsaga goto_definition<CR>")
+    { "gd", "<cmd>Lspsaga goto_definition<CR>", desc = "Go to definition" },
 
     -- Peek type definition
     -- You can edit the file containing the type definition in the floating window
     -- It also supports open/vsplit/etc operations, do refer to "definition_action_keys"
     -- It also supports tagstack
     -- Use <C-t> to jump back
-    keymap("n", "gt", "<cmd>Lspsaga peek_type_definition<CR>")
+    { "gt", "<cmd>Lspsaga peek_type_definition<CR>", desc = "Peek type definition" },
 
     -- Go to type definition
-    -- keymap("n", "gt", "<cmd>Lspsaga goto_type_definition<CR>")
+    -- { "gt", "<cmd>Lspsaga goto_type_definition<CR>", desc="Go to type definition" },
 
     -- Show line diagnostics
     -- You can pass argument ++unfocus to
     -- unfocus the show_line_diagnostics floating window
-    keymap("n", "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>")
+    { "<leader>sl", "<cmd>Lspsaga show_line_diagnostics<CR>", desc = "Show line diagnostics" },
 
     -- Show buffer diagnostics
-    keymap("n", "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>")
+    { "<leader>sb", "<cmd>Lspsaga show_buf_diagnostics<CR>", desc = "Show buffer diagnostics" },
 
     -- Show workspace diagnostics
-    keymap("n", "<leader>sw", "<cmd>Lspsaga show_workspace_diagnostics<CR>")
+    { "<leader>sw", "<cmd>Lspsaga show_workspace_diagnostics<CR>", desc = "Show workspace diagnostics" },
 
     -- Show cursor diagnostics
-    keymap("n", "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>")
+    { "<leader>sc", "<cmd>Lspsaga show_cursor_diagnostics<CR>", desc = "Show cursor diagnostics" },
 
     -- Diagnostic jump
     -- You can use <C-o> to jump back to your previous location
-    keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>")
-    keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>")
-
-    -- Diagnostic jump with filters such as only jumping to an error
-    keymap("n", "[E", function()
-      require("lspsaga.diagnostic"):goto_prev({ severity = vim.diagnostic.severity.ERROR })
-    end)
-    keymap("n", "]E", function()
-      require("lspsaga.diagnostic"):goto_next({ severity = vim.diagnostic.severity.ERROR })
-    end)
+    { "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", desc = "Diagnostic jump previous" },
+    { "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", desc = "Diagnostic jump next" },
 
     -- Toggle outline
-    keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>")
+    { "<leader>o", "<cmd>Lspsaga outline<CR>", desc = "Toggle outline" },
 
     -- Hover Doc
     -- If there is no hover doc,
@@ -87,7 +75,7 @@ return {
     -- there is no information available.
     -- To disable it just use ":Lspsaga hover_doc ++quiet"
     -- Pressing the key twice will enter the hover window
-    keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>")
+    { "K", "<cmd>Lspsaga hover_doc<CR>", desc = "Hover Doc" },
 
     -- If you want to keep the hover window in the top right hand corner,
     -- you can pass the ++keep argument
@@ -97,10 +85,7 @@ return {
     -- keymap("n", "K", "<cmd>Lspsaga hover_doc ++keep<CR>")
 
     -- Call hierarchy
-    keymap("n", "<Leader>ci", "<cmd>Lspsaga incoming_calls<CR>")
-    keymap("n", "<Leader>co", "<cmd>Lspsaga outgoing_calls<CR>")
-
-    -- Floating terminal
-    keymap({ "n", "t" }, "<A-d>", "<cmd>Lspsaga term_toggle<CR>")
-  end,
+    { "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>", desc = "Incoming calls" },
+    { "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>", desc = "Outgoing calls" },
+  },
 }
