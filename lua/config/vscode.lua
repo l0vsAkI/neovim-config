@@ -50,6 +50,5 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 
 require("lazy").setup({
-  { "LazyVim/LazyVim", import = "lazyvim.plugins" },
-  { import = "lazyvim.plugins.extras.vscode" },
+  { "LazyVim/LazyVim", import = "lazyvim.plugins.extras.vscode" },
 })

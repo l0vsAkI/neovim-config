@@ -37,7 +37,6 @@ return {
       }
     end,
   },
-  { "echasnovski/mini.surround", cond = false },
 
   -- Editor UI
   {
