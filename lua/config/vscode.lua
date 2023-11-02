@@ -2,6 +2,7 @@
 local opt = vim.opt
 
 opt.scrolloff = 4
+opt.relativenumber = true
 
 -- kepmap
 vim.cmd([[
@@ -50,5 +51,7 @@ vim.opt.rtp:prepend(lazypath)
 vim.g.mapleader = " " -- Make sure to set `mapleader` before lazy so your mappings are correct
 
 require("lazy").setup({
+  { "LazyVim/LazyVim", import = "lazyvim.plugins" },
   { "LazyVim/LazyVim", import = "lazyvim.plugins.extras.vscode" },
+  { import = "plugins" },
 })
