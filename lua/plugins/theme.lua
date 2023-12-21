@@ -10,9 +10,43 @@ return {
       },
     },
   },
-  "B4mbus/oxocarbon-lua.nvim",
-  "CantoroMC/ayu-nvim",
-  "AlexvZyl/nordic.nvim",
+  {
+    "Shatur/neovim-ayu",
+    config = function()
+      local tmp = {}
+      if vim.o.background == "dark" then
+        tmp.NormalNC = { bg = "#0f151e", fg = "#808080" }
+      else
+        tmp.NormalNC = { bg = "#f0f0f0", fg = "#808080" }
+      end
+      require("ayu").setup({
+        overrides = {
+          Normal = { bg = "None" },
+          ColorColumn = { bg = "None" },
+          SignColumn = { bg = "None" },
+          Folded = { bg = "None" },
+          FoldColumn = { bg = "None" },
+          CursorLine = { bg = "None" },
+          CursorColumn = { bg = "None" },
+          WhichKeyFloat = { bg = "None" },
+          VertSplit = { bg = "None" },
+        },
+      })
+    end,
+  },
+  {
+    "B4mbus/oxocarbon-lua.nvim",
+    config = function()
+      vim.g.oxocarbon_lua_transparent = true
+      vim.g.oxocarbon_lua_alternative_telescope = true
+    end,
+  },
+  {
+    "AlexvZyl/nordic.nvim",
+    opts = {
+      transparent_bg = true,
+    },
+  },
   "nyoom-engineering/oxocarbon.nvim",
   "olivercederborg/poimandres.nvim",
   "Mofiqul/adwaita.nvim",

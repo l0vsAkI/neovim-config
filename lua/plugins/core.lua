@@ -2,7 +2,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "tokyonight-night", -- 加载默认主题
+      colorscheme = "ayu", -- 加载默认主题
     },
   },
 
@@ -170,6 +170,13 @@ return {
   },
 
   -- UI
+  {
+
+    "rcarriga/nvim-notify",
+    opts = {
+      background_colour = "#000000", -- ayu主题透明度的兼容处理
+    },
+  },
   {
     "folke/noice.nvim",
     opts = function(_, opts)
