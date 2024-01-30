@@ -2,7 +2,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "ayu", -- 加载默认主题
+      colorscheme = "cyberdream", -- 加载默认主题
     },
   },
 
@@ -70,6 +70,12 @@ return {
   },
 
   -- Editor UI
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    opts = {
+      indent = { char = "" },
+    },
+  },
   {
     "nvim-neo-tree/neo-tree.nvim",
     opts = {
