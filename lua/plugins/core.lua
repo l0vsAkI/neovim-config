@@ -15,9 +15,6 @@ return {
   },
   {
     "hrsh7th/nvim-cmp",
-    dependencies = {
-      "onsails/lspkind-nvim", -- 智能补全菜单美化
-    },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       -- 调整Supertab
@@ -55,17 +52,6 @@ return {
           end
         end, { "i", "s" }),
       })
-
-      -- 补全菜单美化
-      local lspkind = require("lspkind")
-      opts.formatting = {
-        expandable_indicator = true,
-        fields = { "kind", "abbr" },
-        format = function(entry, vim_item)
-          local kind = lspkind.cmp_format({ mode = "symbol", maxwidth = 80 })(entry, vim_item)
-          return kind
-        end,
-      }
     end,
   },
 
