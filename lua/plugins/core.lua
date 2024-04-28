@@ -17,7 +17,6 @@ return {
     "hrsh7th/nvim-cmp",
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
-      -- 调整Supertab
       local has_words_before = function()
         unpack = unpack or table.unpack
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -36,8 +35,8 @@ return {
           -- this way you will only jump inside the snippet region
           elseif luasnip.expand_or_locally_jumpable() then
             luasnip.expand_or_jump()
-          -- elseif has_words_before() then
-          --   cmp.complete()
+          elseif has_words_before() then
+            cmp.complete()
           else
             fallback()
           end
