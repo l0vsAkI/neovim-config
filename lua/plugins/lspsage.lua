@@ -2,7 +2,7 @@
 return {
   "glepnir/lspsaga.nvim",
   event = "LspAttach",
-  cond = true,
+  cond = false,
   config = function()
     require("lspsaga").setup({
       ui = {

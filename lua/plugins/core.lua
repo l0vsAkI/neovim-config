@@ -146,29 +146,6 @@ return {
   -- LSP
   {
     "neovim/nvim-lspconfig",
-    opts = {
-      servers = {
-        -- Use volar for only .vue files and tsserver for .ts and .js files.
-        tsserver = {
-          init_options = {
-            plugins = {
-              {
-                name = "@vue/typescript-plugin",
-                location = "/path/to/@vue/language-server",
-                languages = { "vue" },
-              },
-            },
-          },
-        },
-        volar = {
-          init_options = {
-            vue = {
-              hybridMode = false,
-            },
-          },
-        },
-      },
-    },
   },
   {
     "williamboman/mason.nvim",
@@ -188,7 +165,7 @@ return {
 
     "rcarriga/nvim-notify",
     opts = {
-      background_colour = "#000000", -- ayu主题透明度的兼容处理
+      -- background_colour = "#000000", -- ayu主题透明度的兼容处理
     },
   },
   {
