@@ -9,10 +9,7 @@ return {
         expandable_indicator = true,
         fields = { "kind", "abbr" },
         format = function(entry, vim_item)
-          return lspkind.cmp_format({ mode = "symbol", preset = "codicons", maxwidth = 80, show_labelDetails = true })(
-            entry,
-            vim_item
-          )
+          return lspkind.cmp_format({ mode = "symbol", maxwidth = 80, show_labelDetails = true })(entry, vim_item)
         end,
       },
     })
