@@ -48,6 +48,7 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     opts = function(_)
+      local cyberdream = require("lualine.themes.cyberdream").get_theme() -- as of v2.0.0. For older versions, use `require("lualine.themes.cyberdream")`
       local icons = require("lazyvim.config").icons
       local function fg(name)
         return function()
@@ -58,7 +59,7 @@ return {
       end
       return {
         options = {
-          theme = "auto",
+          theme = cyberdream, -- theme = "auto"
           globalstatus = true,
           disabled_filetypes = { statusline = { "dashboard", "lazy", "alpha" } },
         },
