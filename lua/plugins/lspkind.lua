@@ -1,5 +1,6 @@
 return {
   "onsails/lspkind-nvim", -- 智能补全菜单美化
+  cond = false,
   config = function()
     -- 补全菜单美化
     local lspkind = require("lspkind")

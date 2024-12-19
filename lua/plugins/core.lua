@@ -6,29 +6,6 @@ return {
     },
   },
 
-  -- Coding
-  {
-    "L3MON4D3/LuaSnip",
-    keys = function()
-      return {} -- supertab keymap overwrite
-    end,
-  },
-  {
-    "hrsh7th/nvim-cmp",
-  },
-
-  -- Editor UI
-  {
-    "lukas-reineke/indent-blankline.nvim",
-  },
-  {
-    "nvim-neo-tree/neo-tree.nvim",
-    opts = {
-      window = {
-        position = "float",
-      },
-    },
-  },
   {
     "akinsho/bufferline.nvim",
     keys = {
@@ -42,19 +19,8 @@ return {
       },
     },
   },
-  {
-    "nvim-lualine/lualine.nvim",
-  },
-
-  -- treesitter
-  {
-    "nvim-treesitter/nvim-treesitter",
-  },
 
   -- LSP
-  {
-    "neovim/nvim-lspconfig",
-  },
   {
     "williamboman/mason.nvim",
     opts = {
@@ -70,7 +36,6 @@ return {
 
   -- UI
   {
-
     "rcarriga/nvim-notify",
     opts = {
       -- background_colour = "#000000", -- ayu主题透明度的兼容处理

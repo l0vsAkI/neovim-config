@@ -2,6 +2,7 @@
 return {
   {
     "folke/tokyonight.nvim",
+    lazy = true,
     opts = {
       transparent = true,
       styles = {
@@ -12,10 +13,11 @@ return {
   },
   {
     "Shatur/neovim-ayu",
+    lazy = true
   },
   {
     "scottmckendry/cyberdream.nvim",
-    lazy = false,
+    lazy = true,
     priority = 1000,
     opts = {
       transparent = true,
@@ -24,6 +26,7 @@ return {
   },
   {
     "B4mbus/oxocarbon-lua.nvim",
+    lazy = true,
     config = function()
       vim.g.oxocarbon_lua_transparent = true
       vim.g.oxocarbon_lua_alternative_telescope = true
@@ -31,14 +34,33 @@ return {
   },
   {
     "AlexvZyl/nordic.nvim",
+    lazy = true,
     opts = {
-      transparent_bg = true,
+      transparent = true,
     },
   },
-  "nyoom-engineering/oxocarbon.nvim",
-  "olivercederborg/poimandres.nvim",
-  "Mofiqul/adwaita.nvim",
-  "rebelot/kanagawa.nvim",
-  "frenzyexists/aquarium-vim",
-  "marko-cerovac/material.nvim",
+  {
+    "nyoom-engineering/oxocarbon.nvim",
+    lazy = true
+  },
+  {
+    "olivercederborg/poimandres.nvim",
+    lazy = true
+  },
+  {
+    "Mofiqul/adwaita.nvim",
+    lazy = true
+  },
+  {
+    "rebelot/kanagawa.nvim",
+    lazy = true
+  },
+  {
+    "frenzyexists/aquarium-vim",
+    lazy = true
+  },
+  {
+    "marko-cerovac/material.nvim",
+    lazy = true
+  },
 }
