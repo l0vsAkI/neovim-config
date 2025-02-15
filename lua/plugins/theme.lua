@@ -23,7 +23,7 @@ return {
     priority = 1000,
     opts = {
       transparent = true,
-      borderless_telescope = false,
+      borderless_pickers = false,
     },
   },
   {
@@ -46,31 +46,31 @@ return {
   {
     "nyoom-engineering/oxocarbon.nvim",
     enabled = false,
-    lazy = true
+    lazy = true,
   },
   {
     "olivercederborg/poimandres.nvim",
     enabled = false,
-    lazy = true
+    lazy = true,
   },
   {
     "Mofiqul/adwaita.nvim",
     enabled = false,
-    lazy = true
+    lazy = true,
   },
   {
     "rebelot/kanagawa.nvim",
     enabled = false,
-    lazy = true
+    lazy = true,
   },
   {
     "frenzyexists/aquarium-vim",
     enabled = false,
-    lazy = true
+    lazy = true,
   },
   {
     "marko-cerovac/material.nvim",
     enabled = false,
-    lazy = true
+    lazy = true,
   },
 }
