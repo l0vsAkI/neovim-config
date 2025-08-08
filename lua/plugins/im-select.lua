@@ -23,7 +23,7 @@ return {
       default_command = "C:\\DevEnv\\im-select.exe",
 
       -- Restore the default input method state when the following events are triggered
-      set_default_events = { "VimEnter", "FocusGained", "InsertLeave", "CmdlineLeave" },
+      set_default_events = { "InsertLeave", "CmdlineLeave" },
 
       -- Restore the previous used input method state when the following events
       -- are triggered, if you don't want to restore previous used im in Insert mode,
