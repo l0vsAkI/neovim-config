@@ -17,4 +17,24 @@ return {
       })
     end,
   },
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      servers = {
+        -- pyright will be automatically installed with mason and loaded with lspconfig
+        tailwindcss = {
+          filetypes = {
+            "html",
+            "javascript",
+            "javascriptreact",
+            "javascript.jsx",
+            "typescript",
+            "typescriptreact",
+            "typescript.tsx",
+            "vue",
+          },
+        },
+      },
+    },
+  }
 }
